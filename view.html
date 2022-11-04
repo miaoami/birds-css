@@ -22,10 +22,150 @@
         .no-animation .area {
             animation: none !important;
         }
+        .navs {
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 300px;
+            background: rgb(24, 42, 99);
+            overflow: auto;
+        }
+        .nav-item > span:hover, .nav-item4:hover {
+            filter: brightness(1.3);
+        }
+        .nav-item > span, .nav-item4 {
+            position: relative;
+            display: block;
+            padding: 16px 16px;
+            line-height: 16px;
+            color: #ddd;
+            background: rgb(24, 42, 99);
+            cursor: pointer;
+            white-space: no-wrap;
+            overflow: hidden;
+        }
+        .nav-item > span:after {
+            display: inline-block;
+            box-sizing: border-box;
+            height: 10px;
+            width: 10px;
+            content: '';
+            border-style: solid;
+            border-color: #ddd;
+            border-width: 1px 1px 0 0;
+            transform: rotate(135deg);
+            float: right;
+            pointer-events: none;
+        }
+        .nav-item.collapse > span:after {
+            transform: rotate(45deg);
+        }
+        .nav-item.collapse > .nav-list {
+            display: none;
+        }
+        .nav-list {
+            // transition: all 0.5s;
+        }
+        .nav-item2 > span {
+            padding-left: 32px;
+            background: rgb(20, 36, 76);
+        }
+        .nav-item3 > span {
+            padding-left: 48px;
+            background: rgb(15, 30, 60);
+        }
+        .nav-item4 {
+            padding-left: 64px;
+            background: rgb(6, 20, 36);
+        }
+        #name {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            color: #333;
+            font-size: 36px;
+            // font-weight: 600;
+            transform: translateX(-50%);
+        }
     </style>
     <link rel="stylesheet" href="./view.css" />
 </head>
 <body>
+    <div class="navs" onclick="handleClick()">
+        <div class="nav-item nav-item1">
+        <span>鹰形目</span>
+        <div class="nav-list">
+            <div class="nav-item nav-item2">
+            <span>美洲鹫科</span>
+            <div class="nav-list">
+                <div class="nav-item nav-item3">
+                <span>安第斯鹫属</span>
+                <div class="nav-list">
+                    <div class="nav-item nav-item4">安第斯神鹫</div>
+                </div>
+            </div>
+            </div>
+        </div>
+<div class="nav-item nav-item2">
+            <span>蛇鹫科</span>
+            <div class="nav-list">
+                <div class="nav-item nav-item3">
+                <span>蛇鹫属</span>
+                <div class="nav-list">
+                    <div class="nav-item nav-item4">蛇鹫</div>
+                </div>
+            </div>
+            </div>
+        </div>
+<div class="nav-item nav-item2">
+            <span>鹗科</span>
+            <div class="nav-list">
+                <div class="nav-item nav-item3">
+                <span>鹗属</span>
+                <div class="nav-list">
+                    
+                </div>
+            </div>
+            </div>
+        </div>
+<div class="nav-item nav-item2">
+            <span>鹰科</span>
+            <div class="nav-list">
+                <div class="nav-item nav-item3">
+                <span>歌鹰属</span>
+                <div class="nav-list">
+                    <div class="nav-item nav-item4">歌鹰</div>
+                </div>
+            </div>
+<div class="nav-item nav-item3">
+                <span>海雕属</span>
+                <div class="nav-list">
+                    <div class="nav-item nav-item4">白头海雕</div>
+<div class="nav-item nav-item4">虎头海雕</div>
+                </div>
+            </div>
+<div class="nav-item nav-item3">
+                <span>雕属</span>
+                <div class="nav-list">
+                    <div class="nav-item nav-item4">金雕</div>
+                </div>
+            </div>
+<div class="nav-item nav-item3">
+                <span>鹰属</span>
+                <div class="nav-list">
+                    <div class="nav-item nav-item4">双色鹰</div>
+<div class="nav-item nav-item4">白腹鹰</div>
+<div class="nav-item nav-item4">苍鹰</div>
+<div class="nav-item nav-item4">雀鹰</div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
     <button onclick="handlePrev()">上一个</button>
     <button onclick="handleNext()">下一个</button>
     <div id="container" class="animal animal0">
@@ -195,43 +335,32 @@
 <div class="area"></div>
 <div class="area"></div>
 <div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
-<div class="area"></div>
     </div>
+    <div id="name"></div>
     <script>
         let count = 0;
-        const max = 8;
+        const max = 10;
         const dom = document.getElementById('container');
+        const items = Array.from(document.getElementsByClassName('nav-item4'));
         let timer = null;
+        setName();
+        
+        function handleClick() {
+            const target = event.target;
+            console.log(target.tagName);
+            if (target.tagName == 'SPAN') {
+                target.parentNode.classList.toggle('collapse');
+            } else if (target.classList.contains('nav-item4')) {
+                cancelAnimation();
+                setTimeout(() => {
+                    dom.classList.remove('animal' + count);
+                    count = items.findIndex(p => p == target);
+                    dom.classList.add('animal' + count);
+                    setName();
+                }, 1);
+            }
+        }
+
         function handlePrev() {
             cancelAnimation();
             setTimeout(() => {
@@ -241,6 +370,7 @@
                 count = max - 1;
             }
                 dom.classList.add('animal' + count);
+                setName();
             }, 1);
         }
         function handleNext() {
@@ -252,6 +382,7 @@
                 count = 0;
             }
                 dom.classList.add('animal' + count);
+                setName();
             }, 1);
         }
         function cancelAnimation() {
@@ -261,6 +392,11 @@
                 dom.classList.remove('no-animation');
             }, 2000);
         }
+
+        function setName() {
+            document.getElementById('name').innerText = items[count].innerText;
+        }
+
     </script>
 </body>
 </html>
